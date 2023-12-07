@@ -5,6 +5,23 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { title, duration, kcalBurns, details, gif } = route.params;
 
+  // Dummy function to simulate workout completion
+  const completeWorkout = () => {
+    // In a real app, you would update the user's workout information in the database
+    // For now, we'll just log a message
+    console.log('Workout completed! Update user data in the database.');
+
+    // Simulate updating workout data (replace this with actual logic)
+    const updatedWorkoutData = {
+      kcalBurned: kcalBurns,
+      minutes: parseInt(duration.split(' ')[1]), // Extract minutes from duration
+      workouts: 1, // Assuming the user completed one workout
+    };
+
+    // Navigate back to HomeScreen and pass the updated data
+    navigation.navigate('HomeScreen', updatedWorkoutData);
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -24,6 +41,12 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
 
       <Image source={{ uri: gif }} style={styles.gif} />
 
+      <TouchableOpacity
+        style={styles.completeButton}
+        onPress={completeWorkout}
+      >
+        <Text style={styles.completeButtonText}>Complete Workout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -62,6 +85,17 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     marginTop: 20,
+  },
+  completeButton: {
+    backgroundColor: '#3498db',
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  completeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

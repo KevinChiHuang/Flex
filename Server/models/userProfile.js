@@ -7,10 +7,14 @@ const userProfileSchema = new mongoose.Schema({
     age: Number,
     weight: Number,
     height: Number,
-    gender: String,
-    goal: String,
-    equipment: String,
-    profilePicture: String
+    gender: Number,
+    goal: Number,
+    equipment: Number,
+    profilePicture: String,
+    kcalsBurns: Number,
+    duration: Number,
+    workoutNumber: Number,
+
 }) 
 
 const userProfile = new mongoose.model("userProfile", userProfileSchema)

@@ -1,41 +1,111 @@
 // HomeScreen.js
-import React from 'react';
+import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
+  const [selectedFilter, setSelectedFilter] = useState('all'); // 'all', 'home', 'gym'
 
   const workouts = [
     {
       title: 'High-Intensity Interval Training (HIIT)',
-      duration: 'Duration: 30 minutes',
+      duration: 30,
       kcalBurns: 300,
       details: `
         High-Intensity Interval Training (HIIT) is a cardiovascular exercise strategy alternating between short bursts of intense anaerobic exercise and less intense recovery periods.
         This workout involves rapid, challenging movements that elevate your heart rate and boost calorie burn.
       `,
       gif: 'https://cdn.discordapp.com/attachments/691700661271920642/1173906494543106089/caption.gif?ex=6565a89e&is=6553339e&hm=5bbedf43b13d8711cc4df3aa3cf74e7969ab5e4bd1cd83aa89db095a8b1a2e9c&',
+      tag: 'home',
     },
     {
       title: 'Full Body Strength Training',
-      duration: 'Duration: 45 minutes',
+      duration: 45,
       kcalBurns: 400,
       details: `
         Full Body Strength Training is a comprehensive workout targeting major muscle groups in the body. It involves exercises like squats, deadlifts, and bench presses.
         This workout helps build muscle strength and endurance.
       `,
       gif: 'https://cdn.discordapp.com/attachments/691700661271920642/1173905780479627314/caption.gif?ex=6565a7f4&is=655332f4&hm=72eee50cd9d2378398c04efd1d7fbe938daaa22621cf08c378cd7fe63f4f32c3&',
-  
+      tag: 'gym',
     },
     {
-      title: 'Full Body Strength Training',
-      duration: 'Duration: 45 minutes',
-      kcalBurns: 400,
+      title: 'Yoga Flow',
+      duration: 60,
+      kcalBurns: 250,
       details: `
-        Full Body Strength Training is a comprehensive workout targeting major muscle groups in the body. It involves exercises like squats, deadlifts, and bench presses.
-        This workout helps build muscle strength and endurance.
+        Yoga Flow is a gentle yet effective workout that combines various yoga poses and sequences.
+        It focuses on flexibility, balance, and relaxation, making it suitable for all fitness levels.
       `,
-      gif: 'https://cdn.discordapp.com/attachments/691700661271920642/1173905780479627314/caption.gif?ex=6565a7f4&is=655332f4&hm=72eee50cd9d2378398c04efd1d7fbe938daaa22621cf08c378cd7fe63f4f32c3&',
-  
+      gif: 'https://example.com/yoga-flow.gif',
+      tag: 'home',
+    },
+    {
+      title: 'Circuit Training',
+      duration:  40,
+      kcalBurns: 350,
+      details: `
+        Circuit Training involves a series of exercises targeting different muscle groups with minimal rest between sets.
+        It provides a full-body workout, improves cardiovascular health, and enhances endurance.
+      `,
+      gif: 'https://example.com/circuit-training.gif',
+      tag: 'gym',
+    },
+    {
+      title: 'Running Intervals',
+      duration: 20,
+      kcalBurns: 200,
+      details: `
+        Running Intervals alternates between periods of sprinting and jogging.
+        It's an excellent cardio workout, promoting fat burn and boosting overall cardiovascular fitness.
+      `,
+      gif: 'https://example.com/running-intervals.gif',
+      tag: 'gym',
+    },
+    {
+      title: 'Bodyweight Cardio Blast',
+      duration: 20,
+      kcalBurns: 250,
+      details: `
+        Bodyweight Cardio Blast is a high-energy workout that requires no equipment.
+        It includes exercises like jumping jacks, burpees, and mountain climbers to get your heart pumping.
+      `,
+      gif: 'https://example.com/bodyweight-cardio.gif',
+      tag: 'home',
+    },
+    {
+      title: 'Dumbbell Strength Training',
+      duration: 40,
+      kcalBurns: 350,
+      details: `
+        Dumbbell Strength Training focuses on building muscle using dumbbells.
+        Perform exercises like dumbbell squats, lunges, and bicep curls for a full-body workout.
+      `,
+      gif: 'https://example.com/dumbbell-strength.gif',
+      tag: 'gym',
+    },
+    {
+      title: 'Yoga for Flexibility',
+      duration: 30,
+      kcalBurns: 200,
+      details: `
+        Yoga for Flexibility is a gentle workout that enhances flexibility and promotes relaxation.
+        Follow a sequence of yoga poses to improve your overall range of motion.
+      `,
+      gif: 'https://example.com/yoga-flexibility.gif',
+      tag: 'home',
+      tag2:'lose'
+    },
+    {
+      title: 'Barbell Powerlifting',
+      duration: 60,
+      kcalBurns: 450,
+      details: `
+        Barbell Powerlifting is a strength-focused workout using a barbell.
+        Lift heavy with exercises like squats, deadlifts, and bench presses for maximum muscle engagement.
+      `,
+      gif: 'https://example.com/barbell-powerlifting.gif',
+      tag: 'gym',
     },
     // Add more workouts as needed
   ];
@@ -44,6 +114,8 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate('WorkoutDetails', workout);
   };
 
+  const filteredWorkouts = selectedFilter === 'all' ? workouts : workouts.filter(workout => workout.tag === selectedFilter);
+
   return (
     <View style={styles.container}>
       <View style={styles.profileIcon}>
@@ -51,7 +123,10 @@ export default function HomeScreen({ navigation }) {
           source={require('../assets/logo.png')} // Replace with the actual user profile image
           style={styles.profileImage}
         />
-        <Text style={styles.userName}>Hello, Toji</Text>
+        <Text style={styles.userName}>
+  Hello, Toji <Icon name="hat-wizard" size={20} color="gold" />
+</Text>
+
       </View>
       <View style={styles.trackerContainer}>
         <View style={styles.tracker}>
@@ -69,8 +144,29 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.filterButtons}>
+          <TouchableOpacity
+            style={[styles.filterButton, selectedFilter === 'all' && styles.selectedFilter]}
+            onPress={() => setSelectedFilter('all')}
+          >
+            <Text style={styles.buttonText}>All</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.filterButton, selectedFilter === 'home' && styles.selectedFilter]}
+            onPress={() => setSelectedFilter('home')}
+          >
+            <Text style={styles.buttonText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.filterButton, selectedFilter === 'gym' && styles.selectedFilter]}
+            onPress={() => setSelectedFilter('gym')}
+          >
+            <Text style={styles.buttonText}>Gym</Text>
+          </TouchableOpacity>
+        </View>
+
         <Text style={styles.sectionTitle}>Recommended Workouts</Text>
-        {workouts.map((workout, index) => (
+        {filteredWorkouts.map((workout, index) => (
           <TouchableOpacity
             key={index}
             style={styles.recommendedWorkoutCard}
@@ -162,6 +258,20 @@ const styles = StyleSheet.create({
   },
   recommendedWorkoutDuration: {
     color: 'white',
+  },
+  filterButtons: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  filterButton: {
+    flex: 1,
+    backgroundColor: '#555',
+    padding: 8,
+    borderRadius: 5,
+    marginRight: 5,
+  },
+  selectedFilter: {
+    backgroundColor: '#777', // or any color to indicate selection
   },
   navigationContainer: {
     flexDirection: 'row',
