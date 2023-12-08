@@ -96,7 +96,7 @@ app.post('/profile/create', async (req, res) => {
             gender: 0,
             goal: 0,
             equipment: 0,
-            kcalsBurned: 0,
+            kcalBurns: 0,
             duration: 0,
             workoutNumber: 0
         });
@@ -119,14 +119,16 @@ app.post('/profile/update', async (req, res) => {
     } else {
         try {
             await UserProfile.updateOne({ user_id: new mongoose.Types.ObjectId(data.user_id) },
-                {  $set: {
-                    age: data.age,
-                    weight: data.weight,
-                    height: data.height,
-                    gender: data.gender,
-                    goal: data.goal,
-                    equipment: data.equipment
-                  } },
+                {
+                    $set: {
+                        age: data.age,
+                        weight: data.weight,
+                        height: data.height,
+                        gender: data.gender,
+                        goal: data.goal,
+                        equipment: data.equipment
+                    }
+                },
             )
             res.send({ status: 200, message: 'Profile updated' });
         } catch (error) {
@@ -137,21 +139,28 @@ app.post('/profile/update', async (req, res) => {
 
 
 app.post('/profile/updateWorkout', async (req, res) => {
-    const { user_id, data } = req.body;
+    const data = req.body;
+    console.log(data)
     //data{ userId: userId, newData: {x, y, z}}
     // Find the user profile by user ID
-    const userProfile = await UserProfile.findOne({ user_id: user_id });
-    const updatedNum = userProfile[0].workoutNumber + 1;
-    
+    const userProfile = await UserProfile.findOne({ user_id: new mongoose.Types.ObjectId(data.user_id) });
 
+    const updatedNum = userProfile.workoutNumber + 1;
+    const updateDuration = userProfile.duration + req.body.duration;
+    const updateKcalBurns = userProfile.kcalBurns + req.body.kcalBurns;
+    console.log(updateDuration, updateKcalBurns, updatedNum);
     if (!userProfile) {
         return res.send({ status: 404, error: 'User profile not found' });
     } else {
         try {
-            await UserProfile.updateOne({ user_id: user_id },
-                { $set: { kcalBurns: data.kcalBurns } },
-                { $set: { duration: data.duration } },
-                { $set: { workoutNumber: updatedNum } }
+            await UserProfile.updateOne({ user_id: new mongoose.Types.ObjectId(data.user_id) },
+                {
+                    $set: {
+                        kcalBurns: updateKcalBurns,
+                        duration: updateDuration,
+                        workoutNumber: updatedNum
+                    }
+                },
             )
             res.send({ status: 200, message: 'Profile updated' });
         } catch (error) {
@@ -160,12 +169,16 @@ app.post('/profile/updateWorkout', async (req, res) => {
     }
 });
 
-app.post('/profile', async(req, res) => {
-     const userProfile = await UserProfile.findOne({ user_id: new mongoose.Types.ObjectId(req.body.user_id) });
-     //if we find a user with that profile
-     if(userProfile){
-        res.send({ status: 200, userProfile: userProfile});
-     }else{
-        res.send({status: 400, error: 'Profile for user not found'});
-     }
+app.post('/profile', async (req, res) => {
+    console.log(req.body);
+    const userProfile = await UserProfile.findOne({ user_id: new mongoose.Types.ObjectId(req.body.user_id) });
+    //if we find a user with that profile
+    if (userProfile) {
+        res.send({ status: 200, userProfile: userProfile });
+    } else {
+        res.send({ status: 400, error: 'Profile for user not found' });
+    }
 })
+
+
+

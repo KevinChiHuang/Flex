@@ -1,10 +1,44 @@
 // HomeScreen.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function HomeScreen({ navigation }) {
-  const [selectedFilter, setSelectedFilter] = useState('all'); // 'all', 'home', 'gym'
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const focused = useIsFocused();
+  const [workOutInfo, setWorkOutInfo] = useState({
+    kcalBurns: null,
+    duration: null,
+    workoutNumber: null,
+  });
+
+
+  const getProfileData = () => {
+    var userId;
+    SecureStore.getItemAsync('user_id').then(user_id => {
+      userId = user_id;
+
+      const User = {
+        user_id: userId,
+      }
+      axios.post('http://142.3.179.23:2000/profile', User).then(response => {
+        //we are initializig profile data to the data we have stored for the user in back end through our endpoint via post
+        setWorkOutInfo(prev => ({
+          kcalBurns: response.data.userProfile.kcalBurns,
+          duration: response.data.userProfile.duration,
+          workoutNumber: response.data.userProfile.workoutNumber,
+        }))
+      })
+    })
+  }
+
+ useEffect(() => {
+    console.log('triggered');
+    getProfileData();
+  }, [focused])
 
   const workouts = [
     {
@@ -131,15 +165,15 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.trackerContainer}>
         <View style={styles.tracker}>
           <Text style={styles.trackerLabel}>Kcal Burned</Text>
-          <Text style={styles.trackerValue}>500</Text>
+          <Text style={styles.trackerValue}>{workOutInfo.kcalBurns}</Text>
         </View>
         <View style={styles.tracker}>
           <Text style={styles.trackerLabel}>Minutes</Text>
-          <Text style={styles.trackerValue}>45</Text>
+          <Text style={styles.trackerValue}>{workOutInfo.duration}</Text>
         </View>
         <View style={styles.tracker}>
           <Text style={styles.trackerLabel}>Workouts</Text>
-          <Text style={styles.trackerValue}>3</Text>
+          <Text style={styles.trackerValue}>{workOutInfo.workoutNumber}</Text>
         </View>
       </View>
 

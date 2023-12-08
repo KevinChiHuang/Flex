@@ -1,6 +1,8 @@
 // In WorkoutDetailsScreen.js
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { title, duration, kcalBurns, details, gif } = route.params;
@@ -11,15 +13,21 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     // For now, we'll just log a message
     console.log('Workout completed! Update user data in the database.');
 
-    // Simulate updating workout data (replace this with actual logic)
-    const updatedWorkoutData = {
-      kcalBurned: kcalBurns,
-      minutes: parseInt(duration.split(' ')[1]), // Extract minutes from duration
-      workouts: 1, // Assuming the user completed one workout
-    };
+    SecureStore.getItemAsync('user_id').then(user_id => {
+      // Simulate updating workout data (replace this with actual logic)
+      const updatedWorkoutData = {
+        kcalBurns: kcalBurns,
+        duration: duration, // Extract minutes from duration
+        //workouts: 1, // Assuming the user completed one workout
+        user_id: user_id
+      };
+      axios.post('http://142.3.179.23:2000/profile/updateWorkout', updatedWorkoutData);
 
-    // Navigate back to HomeScreen and pass the updated data
-    navigation.navigate('HomeScreen', updatedWorkoutData);
+      // Navigate back to HomeScreen and pass the updated data
+      navigation.navigate('HomeScreen', updatedWorkoutData);
+    });
+
+
   };
 
   return (

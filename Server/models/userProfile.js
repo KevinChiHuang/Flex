@@ -11,11 +11,14 @@ const userProfileSchema = new mongoose.Schema({
     goal: Number,
     equipment: Number,
     profilePicture: String,
-    kcalsBurns: Number,
+    kcalBurns: Number,
     duration: Number,
     workoutNumber: Number,
 
 }) 
+
+
+
 
 const userProfile = new mongoose.model("userProfile", userProfileSchema)
 
