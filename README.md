@@ -25,7 +25,7 @@ Install Dependencies by running npm install to install the required packages.
 
 ## Run the Application:
 
-The app currently runs on my ip(142.3.179.23) which will need to be changed to the ip your device is running on. Please replace all my ip in the code with your own ip.
+Replace the front end links with the local ip address of your home network, or your emulated device of choice
 
 Execute npm nodemon in the Server folder to start the backend server.
 
