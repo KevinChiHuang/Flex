@@ -5,6 +5,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const ProfileScreen = ({ navigation }) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -124,10 +125,18 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.profileContainer}>
-        <Image source={profileData.profilePicture} style={styles.profileImage} />
-        <Text style={styles.username}>{profileData.username}</Text>
-      </View>
+
+
+
+<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  <Image
+    source={require('../assets/logo.png')}
+    style={styles.profileImage}
+  />
+  <Text style={styles.username}>
+    Profile
+  </Text>
+</View>
 
       <TouchableOpacity style={styles.editButton} onPress={handleEditSave}>
         <Text style={styles.editButtonText}>{isEditMode ? 'Save' : 'Edit'}</Text>
@@ -163,7 +172,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={{ width: '100%', marginTop: 5 }}
                 value={profileData.weight}
                 minimumValue={0}
-                maximumValue={100}
+                maximumValue={200}
                 step={1}
                 onValueChange={(value) => setProfileData({ ...profileData, weight: value })}
               />
@@ -293,6 +302,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 20,
     justifyContent: 'space-between',
+  },
+  profileContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+  },
+  username: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    marginTop: 10,
   },
   editButton: {
     backgroundColor: '#555',

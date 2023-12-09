@@ -35,9 +35,19 @@ export default function HomeScreen({ navigation }) {
     })
   }
 
+  const [hatColor, setHatColor] = useState('bronze');
+
  useEffect(() => {
     console.log('triggered');
     getProfileData();
+
+    if (workOutInfo.workoutNumber < 5) {
+      setHatColor('bronze');
+    } else if (workOutInfo.workoutNumber <= 10) {
+      setHatColor('silver');
+    } else {
+      setHatColor('gold');
+    }
   }, [focused])
 
   const workouts = [
@@ -49,7 +59,7 @@ export default function HomeScreen({ navigation }) {
         High-Intensity Interval Training (HIIT) is a cardiovascular exercise strategy alternating between short bursts of intense anaerobic exercise and less intense recovery periods.
         This workout involves rapid, challenging movements that elevate your heart rate and boost calorie burn.
       `,
-      gif: 'https://cdn.discordapp.com/attachments/691700661271920642/1173906494543106089/caption.gif?ex=6565a89e&is=6553339e&hm=5bbedf43b13d8711cc4df3aa3cf74e7969ab5e4bd1cd83aa89db095a8b1a2e9c&',
+      gif: 'https://media1.tenor.com/m/7DvB8w19-tAAAAAd/jimin-bts.gif',
       tag: 'home',
     },
     {
@@ -157,9 +167,22 @@ export default function HomeScreen({ navigation }) {
           source={require('../assets/logo.png')} // Replace with the actual user profile image
           style={styles.profileImage}
         />
-        <Text style={styles.userName}>
-  Hello, Toji <Icon name="hat-wizard" size={20} color="gold" />
-</Text>
+       <Text style={styles.userName}>
+          Welcome Flexies!{' '}
+          <Icon
+            name="hat-wizard"
+            size={20}
+            color={
+              hatColor === 'bronze'
+                ? '#cd7f32' // Bronze color
+                : hatColor === 'silver'
+                ? '#C0C0C0' // Silver color
+                : hatColor === 'gold'
+                ? 'gold' // Gold color
+                : 'black' // Default color (change as needed)
+            }
+          />
+        </Text>
 
       </View>
       <View style={styles.trackerContainer}>
@@ -207,7 +230,7 @@ export default function HomeScreen({ navigation }) {
             onPress={() => navigateToWorkoutDetails(workout)}
           >
             <Text style={styles.recommendedWorkoutTitle}>{workout.title}</Text>
-            <Text style={styles.recommendedWorkoutDuration}>{workout.duration}</Text>
+            <Text style={styles.recommendedWorkoutDuration}>{workout.duration} Minutes</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
