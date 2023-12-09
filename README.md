@@ -20,6 +20,14 @@ Navigate to the Server folder:
 
 Install Dependencies by running npm install to install the required packages.
 
+## Set Up MongoDB Atlas URL:
+
+Create an account with MongoDB Atlas.
+
+Replace my MongoDB Atlas URL in the .env file inside the server folder with your MongoDB Atlas URL.
+
+
+
 
 ## Run the Application:
 
