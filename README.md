@@ -11,8 +11,6 @@ React Native
 
 MongoDB (Atlas)
 
-Code Editor (e.g., Visual Studio Code)
-
 Expo Go on Android
 
 
