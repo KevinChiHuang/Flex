@@ -10,12 +10,12 @@ Code Editor (e.g., Visual Studio Code)
 Expo Go on andriod
 
 
-#Backend (Node.js Application) Installation Guide:
+## Backend (Node.js Application) Installation Guide:
 Navigate to the Server folder:
 Install Dependencies by running npm install to install the required packages.
 
 
-#Run the Application:
+## Run the Application:
 
 (replace ip address here)
 
