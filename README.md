@@ -1,7 +1,7 @@
 # FlexAvail
 
 
-An innovative mobile application poised to transform the fitness and wellness industry.
+An innovative mobile application made to transform the fitness and wellness industry.
 
 Requirments:
 
@@ -13,7 +13,7 @@ MongoDB (Atlas)
 
 Code Editor (e.g., Visual Studio Code)
 
-Expo Go on andriod
+Expo Go on Android
 
 
 ## Backend (Node.js Application) Installation Guide:
