@@ -25,7 +25,7 @@ Install Dependencies by running npm install to install the required packages.
 
 ## Run the Application:
 
-(replace ip address here)
+The app currently runs on my ip(142.3.179.23) which will need to be changed to the ip your device is running on. Please replace all my ip in the code with your own ip.
 
 Execute npm nodemon in the Server folder to start the backend server.
 
