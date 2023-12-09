@@ -20,13 +20,13 @@ Navigate to the Server folder:
 
 Install Dependencies by running npm install to install the required packages.
 
-## Set Up MongoDB Atlas URL:
+## Environment variables set up:
 
 create a .env file inside the server folder.
 
 .env example:
 
-SECRET=dogman
+SECRET=password
 
 MONGO_URI= replace this with your own URI
 
