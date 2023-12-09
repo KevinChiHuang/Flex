@@ -26,7 +26,7 @@ Create an account with MongoDB Atlas.
 
 create a .env file inside the server folder.
 
-.enc example:
+.env example:
 
 SECRET=dogman
 
