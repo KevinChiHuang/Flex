@@ -53,106 +53,127 @@ export default function HomeScreen({ navigation }) {
   const workouts = [
     {
       title: 'High-Intensity Interval Training (HIIT)',
-      duration: 30,
-      kcalBurns: 300,
+      duration: 25,
+      kcalBurns: 350,
       details: `
         High-Intensity Interval Training (HIIT) is a cardiovascular exercise strategy alternating between short bursts of intense anaerobic exercise and less intense recovery periods.
         This workout involves rapid, challenging movements that elevate your heart rate and boost calorie burn.
       `,
-      gif: 'https://media1.tenor.com/m/7DvB8w19-tAAAAAd/jimin-bts.gif',
+      gif: 'https://media1.tenor.com/m/9fUhv3K31_AAAAAC/liift-hiit.gif',
       tag: 'home',
     },
     {
       title: 'Full Body Strength Training',
-      duration: 45,
-      kcalBurns: 400,
+      duration: 50,
+      kcalBurns: 450,
       details: `
         Full Body Strength Training is a comprehensive workout targeting major muscle groups in the body. It involves exercises like squats, deadlifts, and bench presses.
         This workout helps build muscle strength and endurance.
       `,
-      gif: 'https://cdn.discordapp.com/attachments/691700661271920642/1173905780479627314/caption.gif?ex=6565a7f4&is=655332f4&hm=72eee50cd9d2378398c04efd1d7fbe938daaa22621cf08c378cd7fe63f4f32c3&',
+      gif: 'https://media1.tenor.com/m/6ZBrZmAYv8gAAAAC/deadlift-workout.gif',
       tag: 'gym',
     },
     {
       title: 'Yoga Flow',
-      duration: 60,
-      kcalBurns: 250,
+      duration: 45,
+      kcalBurns: 300,
       details: `
         Yoga Flow is a gentle yet effective workout that combines various yoga poses and sequences.
         It focuses on flexibility, balance, and relaxation, making it suitable for all fitness levels.
       `,
-      gif: 'https://example.com/yoga-flow.gif',
+      gif: 'https://media1.tenor.com/m/8hv0a97NkX0AAAAC/krystel-hendrikse-krystel.gif',
       tag: 'home',
     },
     {
       title: 'Circuit Training',
-      duration:  40,
-      kcalBurns: 350,
+      duration: 35,
+      kcalBurns: 400,
       details: `
         Circuit Training involves a series of exercises targeting different muscle groups with minimal rest between sets.
         It provides a full-body workout, improves cardiovascular health, and enhances endurance.
       `,
-      gif: 'https://example.com/circuit-training.gif',
+      gif: 'https://media1.tenor.com/m/vQESpWA6A4UAAAAC/workout-jonas-brothers-olympic-dreams.gif',
       tag: 'gym',
     },
     {
       title: 'Running Intervals',
-      duration: 20,
-      kcalBurns: 200,
+      duration: 30,
+      kcalBurns: 250,
       details: `
         Running Intervals alternates between periods of sprinting and jogging.
         It's an excellent cardio workout, promoting fat burn and boosting overall cardiovascular fitness.
       `,
-      gif: 'https://example.com/running-intervals.gif',
+      gif: 'https://media1.tenor.com/m/QXSgKyaBrjAAAAAd/running-inter-miami-cf.gif',
       tag: 'gym',
     },
     {
       title: 'Bodyweight Cardio Blast',
-      duration: 20,
-      kcalBurns: 250,
+      duration: 15,
+      kcalBurns: 200,
       details: `
         Bodyweight Cardio Blast is a high-energy workout that requires no equipment.
         It includes exercises like jumping jacks, burpees, and mountain climbers to get your heart pumping.
       `,
-      gif: 'https://example.com/bodyweight-cardio.gif',
+      gif: 'https://media1.tenor.com/m/gI-8qCUEko8AAAAC/pushup.gif',
       tag: 'home',
     },
     {
       title: 'Dumbbell Strength Training',
-      duration: 40,
-      kcalBurns: 350,
+      duration: 45,
+      kcalBurns: 400,
       details: `
         Dumbbell Strength Training focuses on building muscle using dumbbells.
         Perform exercises like dumbbell squats, lunges, and bicep curls for a full-body workout.
       `,
-      gif: 'https://example.com/dumbbell-strength.gif',
+      gif: 'https://media1.tenor.com/m/y_Z2oZ35sP8AAAAd/skull-crusher-dumbells.gif',
       tag: 'gym',
     },
     {
       title: 'Yoga for Flexibility',
-      duration: 30,
-      kcalBurns: 200,
+      duration: 40,
+      kcalBurns: 300,
       details: `
         Yoga for Flexibility is a gentle workout that enhances flexibility and promotes relaxation.
         Follow a sequence of yoga poses to improve your overall range of motion.
       `,
-      gif: 'https://example.com/yoga-flexibility.gif',
+      gif: 'https://media1.tenor.com/m/HASljMHa9YIAAAAC/krystel-hendrikse-krystel.gif',
       tag: 'home',
-      tag2:'lose'
+      
     },
     {
       title: 'Barbell Powerlifting',
-      duration: 60,
-      kcalBurns: 450,
+      duration: 55,
+      kcalBurns: 500,
       details: `
         Barbell Powerlifting is a strength-focused workout using a barbell.
         Lift heavy with exercises like squats, deadlifts, and bench presses for maximum muscle engagement.
       `,
-      gif: 'https://example.com/barbell-powerlifting.gif',
+      gif: 'https://media1.tenor.com/m/KYKOBIILxlgAAAAd/carry-the-weight-mattie-rogers.gif',
       tag: 'gym',
     },
-    // Add more workouts as needed
-  ];
+    {
+      title: 'Jump Rope Cardio',
+      duration: 20,
+      kcalBurns: 150,
+      details: `
+        Jump Rope Cardio is a quick and effective cardio workout using a jump rope.
+        It improves coordination and burns calories in a short amount of time.
+      `,
+      gif: 'https://media1.tenor.com/m/ngRFgZOHi8UAAAAd/jump-rope-jordan-preisinger.gif',
+      tag: 'home',
+    },
+    {
+      title: 'Kettlebell Circuit',
+      duration: 30,
+      kcalBurns: 300,
+      details: `
+        Kettlebell Circuit involves dynamic exercises with a kettlebell, targeting multiple muscle groups.
+        It provides a full-body workout and enhances both strength and cardiovascular fitness.
+      `,
+      gif: 'https://media1.tenor.com/m/afX3K-ukaLgAAAAd/lifting-kettlebell-jordan-preisinger.gif',
+      tag: 'gym',
+    },
+];
 
   const navigateToWorkoutDetails = (workout) => {
     navigation.navigate('WorkoutDetails', workout);

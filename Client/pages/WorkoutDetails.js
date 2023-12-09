@@ -40,7 +40,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
       </TouchableOpacity>
       <Text style={styles.workoutTitle}>{title}</Text>
       <Text style={styles.workoutDescription}>
-        {duration}
+        {duration} Minutes
         {'\n\n'}
         Kcal Burned: {kcalBurns}
         {'\n\n'}
